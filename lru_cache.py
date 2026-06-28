@@ -18,8 +18,7 @@ class LRUCache:
 
         self.capacity = capacity
         self.cache: dict[int, Node] = {}
-
-        # Sentinel (dummy) nodes — eliminate all None-checks in _remove/_add
+        
         self.head = Node(0, 0)   # LRU side
         self.tail = Node(0, 0)   # MRU side
         self.head.next = self.tail
@@ -30,7 +29,7 @@ class LRUCache:
         prev, nxt   = node.prev, node.next
         prev.next   = nxt
         nxt.prev    = prev
-        # Nullify pointers to help GC (optional but clean)
+        
         node.prev = node.next = None
 
     def _add_to_tail(self, node: Node) -> None:
